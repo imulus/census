@@ -1,0 +1,11 @@
+_ReSharper.*
+[Bb]in
+Build/Temp
+[Oo]bj
+[Pp]roperties
+*.suo
+*.user
+*.cache
+*.orig
+Thumbs.db
+.DS_Store

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Package" ToolsVersion="4.0">
+
+	<!-- IMPORTS -->
+	<PropertyGroup>
+		<MSBuildCustomTasksPath>$(MSBuildProjectDirectory)\..\Tools\MSBuildTasks</MSBuildCustomTasksPath>
+		<MSBuildCommunityTasksPath>$(MSBuildCustomTasksPath)</MSBuildCommunityTasksPath>
+		<MSBuildUmbracoTasksPath>$(MSBuildCustomTasksPath)</MSBuildUmbracoTasksPath>
+	</PropertyGroup>
+
+	<Import Project="$(MSBuildCustomTasksPath)\MSBuild.Community.Tasks.Targets" />
+	<Import Project="$(MSBuildCustomTasksPath)\MSBuild.Umbraco.Tasks.Targets" />
+
+	<!-- PROPERTIES -->
+	<PropertyGroup>
+		<VersionMajor>0</VersionMajor>
+		<VersionMinor>1</VersionMinor>
+		<VersionPatch>0</VersionPatch>
+		<VersionSuffix>-alpha</VersionSuffix>
+		<UmbracoVersion>4.5.2</UmbracoVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<RootDir>$(MSBuildProjectDirectory)\..</RootDir>
+		<BuildDir>$(MSBuildProjectDirectory)\Temp</BuildDir>
+		<PackageDir>$(MSBuildProjectDirectory)</PackageDir>
+		<ProjectDir>$(RootDir)\Src\Our.Umbraco.Package</ProjectDir>
+	</PropertyGroup>
+
+	<!-- TARGETS -->
+
+	<!-- CLEAN -->
+	<Target Name="Clean">
+		<RemoveDir Directories="$(BuildDir)" Condition="Exists('$(BuildDir)')" />
+		<MakeDir Directories="$(BuildDir)" />
+	</Target>
+
+	<!-- UPDATE ASSEMBLEY VERSION -->
+	<Target Name="UpdateAssemblyInfo" DependsOnTargets="Clean">
+		<Version Major="$(VersionMajor)" Minor="$(VersionMinor)" BuildType="Automatic" RevisionType="Automatic" StartDate="10/09/2012">
+			<Output TaskParameter="Build" PropertyName="Build" />
+			<Output TaskParameter="Revision" PropertyName="Revision" />
+		</Version>
+		<AssemblyInfo CodeLanguage="CS"
+			OutputFile="$(ProjectDir)\Properties\VersionInfo.cs"
+			AssemblyVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch)"
+			AssemblyFileVersion="$(VersionMajor).$(VersionMinor).$(Build).$(Revision)"
+			AssemblyInformationalVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch)$(VersionSuffix)"/>
+	</Target>
+
+	<!-- COMPILE -->
+	<Target Name="Compile" DependsOnTargets="UpdateAssemblyInfo">
+		<MSBuild Projects="$(RootDir)\Our.Umbraco.Package.sln" Properties="Configuration=Release" />
+	</Target>
+
+	<!-- PREPARE FILES -->
+	<Target Name="PrepairFiles" DependsOnTargets="Compile">
+		<ItemGroup>
+			<BinFiles Include="$(ProjectDir)\Bin\Release\*.dll" />
+			<PackageFile Include="$(PackageDir)\package.xml" />
+		</ItemGroup>
+		<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildDir)\bin" />
+		<Copy SourceFiles="@(PackageFile)" DestinationFolder="$(BuildDir)" />
+	</Target>
+
+	<!-- MANIFEST -->
+	<Target Name="Manifest" DependsOnTargets="PrepairFiles">
+		<ItemGroup>
+			<ManifestFiles Include="$(BuildDir)\**\*" Exclude="$(BuildDir)\package.xml" />
+		</ItemGroup>
+		<ManifestUpdate ManifestFile="$(BuildDir)\package.xml"
+			WorkingDirectory="$(BuildDir)"
+			MinimumRequiredUmbracoVersion="$(UmbracoVersion)"
+			PackageVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch)$(VersionSuffix)"
+			Readme="$([System.IO.File]::ReadAllText(readme.txt))"
+			Files="@(ManifestFiles)" />
+	</Target>
+
+	<!-- PACKAGE -->
+	<Target Name="Package" DependsOnTargets="Manifest">
+		<ItemGroup>
+			<PackageFiles Include="$(BuildDir)\**\*.*" />
+		</ItemGroup>
+		<Package ManifestFile="$(BuildDir)\package.xml"
+			WorkingDirectory="$(BuildDir)"
+			OutputDirectory="$(PackageDir)"
+			Files="@(PackageFiles)" />
+		<RemoveDir Directories="$(BuildDir)" Condition="Exists('$(BuildDir)')" />
+	</Target>
+
+</Project>
