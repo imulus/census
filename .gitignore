@@ -9,3 +9,5 @@ Build/Temp
 *.orig
 Thumbs.db
 .DS_Store
+
+src/[Pp]ackages
