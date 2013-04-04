@@ -173,9 +173,17 @@
     <Compile Include="UmbracoObjectRelations\DataTypeToProperty.cs" />
     <Compile Include="UmbracoObjectRelations\TemplateToContent.cs" />
     <Compile Include="UmbracoObjectRelations\TemplateToDocumentType.cs" />
+    <Compile Include="Web\Usages.aspx.cs">
+      <DependentUpon>Usages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Web\Usages.aspx.designer.cs">
+      <DependentUpon>Usages.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="Web\Usages.aspx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Census.Core\Census.Core.csproj">
