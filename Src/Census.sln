@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{93A077
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Census.Core", "Census.Core\Census.Core.csproj", "{8A9085C2-4672-4721-BF0D-A8FF0E085B58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{78563840-B21A-416E-9661-3BD69ECCD5E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78563840-B21A-416E-9661-3BD69ECCD5E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78563840-B21A-416E-9661-3BD69ECCD5E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A9085C2-4672-4721-BF0D-A8FF0E085B58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A9085C2-4672-4721-BF0D-A8FF0E085B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A9085C2-4672-4721-BF0D-A8FF0E085B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A9085C2-4672-4721-BF0D-A8FF0E085B58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -167,11 +167,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration.cs" />
     <Compile Include="Events\PageEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UmbracoObjectRelations\DataTypeToProperty.cs" />
+    <Compile Include="UmbracoObjectRelations\TemplateToContent.cs" />
+    <Compile Include="UmbracoObjectRelations\TemplateToDocumentType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Census.Core\Census.Core.csproj">
+      <Project>{8A9085C2-4672-4721-BF0D-A8FF0E085B58}</Project>
+      <Name>Census.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Web\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -199,6 +212,10 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
