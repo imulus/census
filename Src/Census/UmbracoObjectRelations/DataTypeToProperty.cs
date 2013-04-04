@@ -41,6 +41,7 @@ namespace Census.UmbracoObjectRelations
                 row["Name"] = usage.Text;
                 row["Icon"] = usage.IconUrl;
                 row["Alias"] = usage.Alias;
+                dt.Rows.Add(row);
                 row.AcceptChanges();
             }
 

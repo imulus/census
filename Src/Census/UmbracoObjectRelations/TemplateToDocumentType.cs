@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using Census.Core.Interfaces;
 using umbraco.cms.businesslogic.datatype;
+using umbraco.cms.businesslogic.template;
 using umbraco.cms.businesslogic.web;
 
 namespace Census.UmbracoObjectRelations
@@ -14,7 +15,7 @@ namespace Census.UmbracoObjectRelations
 
         public object From 
         {
-            get { return typeof (DataTypeDefinition); }
+            get { return typeof (Template); }
         } // IUmbracoObject?
 
         public object To
@@ -42,6 +43,7 @@ namespace Census.UmbracoObjectRelations
                 row["Icon"] = usage.IconUrl;
                 row["Alias"] = usage.Alias;
                 row["Default"] = (usage.DefaultTemplate == (int)id ? "Y" : "N");
+                dt.Rows.Add(row);
                 row.AcceptChanges();
             }
 

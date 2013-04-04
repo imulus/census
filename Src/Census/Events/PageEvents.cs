@@ -33,17 +33,22 @@ namespace Census.Events
 
             var path = umbPage.Page.Request.Path.ToLower();
 
-            if (!Configuration.RelationDefinitions.Any(x=>x.PagePath.ToLower() == path.ToLower().Replace("/umbraco/", "/")))
+            if (!Configuration.GetRelationsByPagePath(path).Any())
                 return;
 
-            int pageId;
-            int.TryParse(HttpContext.Current.Request.QueryString["id"], out pageId);
 
             AddToolbarButton(umbPage);
         }
 
         private void AddToolbarButton(umbracoPage page)
         {
+            int pageId;
+            int.TryParse(HttpContext.Current.Request.QueryString["id"], out pageId);
+            
+            // TODO: Hack for differing querystrings / consolidate
+            if (pageId == 0)
+                int.TryParse(HttpContext.Current.Request.QueryString["templateID"], out pageId);
+
             var menu = (ScrollingMenu)Utility.FindControl<Control>((Control c) => c.ClientID.EndsWith("_menu"), page.Page);
 
             MenuIconI ni = menu.NewIcon();

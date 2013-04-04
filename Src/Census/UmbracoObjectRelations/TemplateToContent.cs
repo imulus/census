@@ -27,7 +27,7 @@ namespace Census.UmbracoObjectRelations
 
         public DataTable GetRelations(object id)
         {
-            throw new NotImplementedException();
+            return new DataTable();
         }
 
     }
