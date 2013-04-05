@@ -15,18 +15,19 @@ namespace Census.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Page.Title = "WAT";
             var sourcePage = HttpContext.Current.Request.QueryString["sourcePage"];
             var sourceId = int.Parse(HttpContext.Current.Request.QueryString["sourceId"]);
             var relationTypes = Configuration.GetRelationsByPagePath(sourcePage);
 
             foreach (var relationType in relationTypes)
             {
-                var tabPage = TabView1.NewTabPage(relationType.To.ToString().Split('.').Last());
+                var relations = relationType.GetRelations(sourceId);
+
+                var tabPage = TabView1.NewTabPage(relationType.To.ToString().Split('.').Last() + " (" + relations.Rows.Count + ")");
                 tabPage.HasMenu = false;
 
                 var pane = new Pane();
-                pane.Controls.Add(DataTableToHtml(relationType.GetRelations(sourceId)));
+                pane.Controls.Add(DataTableToHtml(relations));
                 tabPage.Controls.Add(pane);
             }
         }

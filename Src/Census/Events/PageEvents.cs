@@ -21,7 +21,7 @@ namespace Census.Events
 
         public PageEvents()
         {
-            umbracoPage.Init += umbracoPage_Init;
+            umbracoPage.Load += umbracoPage_Init;
         }
 
         void umbracoPage_Init(object sender, EventArgs e)
@@ -48,13 +48,24 @@ namespace Census.Events
             // TODO: Hack for differing querystrings / consolidate
             if (pageId == 0)
                 int.TryParse(HttpContext.Current.Request.QueryString["templateID"], out pageId);
+            if (pageId == 0)
+                int.TryParse(HttpContext.Current.Request.QueryString["macroID"], out pageId);
 
             var menu = (ScrollingMenu)Utility.FindControl<Control>((Control c) => c.ClientID.EndsWith("_menu"), page.Page);
+            if (menu == null)
+            {
+                var tabView = (TabView) Utility.FindControl<Control>((Control c) => c.ID == "TabView1", page.Page);
 
-            MenuIconI ni = menu.NewIcon();
-            ni.AltText = "View Usages";
-            ni.OnClickCommand = string.Format("UmbClientMgr.openModalWindow('plugins/census/usages.aspx?sourcePage={0}&sourceId={1}', 'Usages', true, 600, 500, 0, 0); return false;", page.Request.Path, pageId);
-            ni.ImageURL = "/umbraco/images/umbraco/house.png";
+                foreach (TabPage page3 in tabView.GetPanels())
+                {
+                    AddMenuIcon(page3.Menu, page, pageId);
+                }
+            }
+            else
+            {
+                AddMenuIcon(menu, page, pageId);
+            }
+                
 
             string s = "<script type='text/javascript'>";
             s += "$(document).ready(function() {";
@@ -70,5 +81,12 @@ namespace Census.Events
             page.Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "cssfixtoolbar", strCss);
         }
 
+        private void AddMenuIcon(ScrollingMenu menu, umbracoPage page, int pageId)
+        {
+            MenuIconI ni = menu.NewIcon();
+            ni.AltText = "View Usages";
+            ni.OnClickCommand = string.Format("UmbClientMgr.openModalWindow('plugins/census/usages.aspx?sourcePage={0}&sourceId={1}', 'Usages', true, 600, 500, 0, 0); return false;", page.Request.Path, pageId);
+            ni.ImageURL = "/umbraco/images/umbraco/house.png"; 
+        }
     }
 }
