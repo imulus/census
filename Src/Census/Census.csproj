@@ -171,6 +171,8 @@
     <Compile Include="Events\PageEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UmbracoObjectRelations\DataTypeToProperty.cs" />
+    <Compile Include="UmbracoObjectRelations\MacroToTemplate.cs" />
+    <Compile Include="UmbracoObjectRelations\PropertyEditorToDataType.cs" />
     <Compile Include="UmbracoObjectRelations\TemplateToContent.cs" />
     <Compile Include="UmbracoObjectRelations\TemplateToDocumentType.cs" />
     <Compile Include="Web\Usages.aspx.cs">

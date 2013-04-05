@@ -17,7 +17,7 @@ namespace Census.Core
             get
             {
                 // TODO: Configurable via TypeFinder or otherwise
-                return new List<IRelation>() { new DataTypeToProperty(), new TemplateToContent(), new TemplateToDocumentType() };
+                return new List<IRelation>() { new DataTypeToProperty(), new TemplateToContent(), new TemplateToDocumentType(), new PropertyEditorToDataType(), new MacroToTemplate() };
             }
         }
 
