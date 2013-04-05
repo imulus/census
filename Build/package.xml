@@ -2,19 +2,19 @@
 <umbPackage>
 	<info>
 		<package>
-			<name>Package Name</name>
-			<version>0.0.0</version>
+			<name>Census</name>
+			<version>0.1.0</version>
 			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
-			<url>http://our.umbraco.org/projects/</url>
+			<url>http://our.umbraco.org/projects</url>
 			<requirements>
 				<major>0</major>
-				<minor>0</minor>
+				<minor>1</minor>
 				<patch>0</patch>
 			</requirements>
 		</package>
 		<author>
-			<name>Our Umbraco</name>
-			<website>http://our.umbraco.org/</website>
+			<name>Imulus</name>
+			<website>http://imulus.com/</website>
 		</author>
 		<readme>
 			<![CDATA[]]>

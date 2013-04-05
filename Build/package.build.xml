@@ -16,7 +16,7 @@
 		<VersionMajor>0</VersionMajor>
 		<VersionMinor>1</VersionMinor>
 		<VersionPatch>0</VersionPatch>
-		<VersionSuffix>-alpha</VersionSuffix>
+		<VersionSuffix></VersionSuffix>
 		<UmbracoVersion>4.5.2</UmbracoVersion>
 	</PropertyGroup>
 
@@ -24,7 +24,7 @@
 		<RootDir>$(MSBuildProjectDirectory)\..</RootDir>
 		<BuildDir>$(MSBuildProjectDirectory)\Temp</BuildDir>
 		<PackageDir>$(MSBuildProjectDirectory)</PackageDir>
-		<ProjectDir>$(RootDir)\Src\Our.Umbraco.Package</ProjectDir>
+		<ProjectDir>$(RootDir)\Src\Census</ProjectDir>
 	</PropertyGroup>
 
 	<!-- TARGETS -->
@@ -50,17 +50,21 @@
 
 	<!-- COMPILE -->
 	<Target Name="Compile" DependsOnTargets="UpdateAssemblyInfo">
-		<MSBuild Projects="$(RootDir)\Our.Umbraco.Package.sln" Properties="Configuration=Release" />
+		<MSBuild Projects="$(RootDir)\Src\Census.sln" Properties="Configuration=Release" />
 	</Target>
 
 	<!-- PREPARE FILES -->
 	<Target Name="PrepairFiles" DependsOnTargets="Compile">
 		<ItemGroup>
-			<BinFiles Include="$(ProjectDir)\Bin\Release\*.dll" />
+			<BinFiles Include="$(ProjectDir)\Bin\Census*.dll" />
 			<PackageFile Include="$(PackageDir)\package.xml" />
+			<WebFiles Include="$(ProjectDir)\Web\*.aspx" />
+			<CssFiles Include="$(ProjectDir)\Web\*.css" />
 		</ItemGroup>
 		<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildDir)\bin" />
 		<Copy SourceFiles="@(PackageFile)" DestinationFolder="$(BuildDir)" />
+		<Copy SourceFiles="@(WebFiles)" DestinationFolder="$(BuildDir)\umbraco\plugins\census" />
+		<Copy SourceFiles="@(CssFiles)" DestinationFolder="$(BuildDir)\umbraco\plugins\census" />
 	</Target>
 
 	<!-- MANIFEST -->
