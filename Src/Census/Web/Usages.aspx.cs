@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Census.Core;
+using umbraco.uicontrols;
 
 namespace Census.Web
 {
@@ -14,21 +15,31 @@ namespace Census.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Title = "WAT";
             var sourcePage = HttpContext.Current.Request.QueryString["sourcePage"];
             var sourceId = int.Parse(HttpContext.Current.Request.QueryString["sourceId"]);
             var relationTypes = Configuration.GetRelationsByPagePath(sourcePage);
 
             foreach (var relationType in relationTypes)
             {
-                grid.Controls.Add(new LiteralControl(string.Format("<h2>{0}</h2>", relationType.To.ToString()).Split('.').Last())); // TODO: Cleanup
-                grid.Controls.Add(DataTableToHtml(relationType.GetRelations(sourceId)));
+                var tabPage = TabView1.NewTabPage(relationType.To.ToString().Split('.').Last());
+                tabPage.HasMenu = false;
+
+                var pane = new Pane();
+                pane.Controls.Add(DataTableToHtml(relationType.GetRelations(sourceId)));
+                tabPage.Controls.Add(pane);
             }
+        }
+
+        private void InitTabs()
+        {
+            
         }
 
         private LiteralControl DataTableToHtml(DataTable dt)
         {
             var sb = new StringBuilder();
-            sb.Append("<table>");
+            sb.Append("<table class='censusTable' cellpadding='0' cellspacing='0'>");
 
             sb.Append("<thead>");
             sb.Append("<tr>");
@@ -43,7 +54,7 @@ namespace Census.Web
             foreach (DataRow row in dt.Rows)
             {
                 sb.Append("<tr>");
-                for (int i = 0; i < dt.Rows.Count; i++)
+                for (int i = 0; i < dt.Columns.Count; i++)
                 {
                     sb.AppendFormat("<td>{0}</td>", row[i]);
                 }

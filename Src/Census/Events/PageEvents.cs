@@ -53,7 +53,7 @@ namespace Census.Events
 
             MenuIconI ni = menu.NewIcon();
             ni.AltText = "View Usages";
-            ni.OnClickCommand = string.Format("UmbClientMgr.openModalWindow('plugins/census/usages.aspx?sourcePage={0}&sourceId={1}', 'Usages', true, 400, 300, 0, 0); return false;", page.Request.Path, pageId);
+            ni.OnClickCommand = string.Format("UmbClientMgr.openModalWindow('plugins/census/usages.aspx?sourcePage={0}&sourceId={1}', 'Usages', true, 600, 500, 0, 0); return false;", page.Request.Path, pageId);
             ni.ImageURL = "/umbraco/images/umbraco/house.png";
 
             string s = "<script type='text/javascript'>";

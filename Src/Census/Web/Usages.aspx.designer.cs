@@ -13,13 +13,13 @@ namespace Census.Web {
     public partial class Usages {
         
         /// <summary>
-        /// form1 control.
+        /// TabView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::umbraco.uicontrols.TabView TabView1;
         
         /// <summary>
         /// grid control.

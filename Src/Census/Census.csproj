@@ -183,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="Web\style.css" />
     <Content Include="Web\Usages.aspx" />
   </ItemGroup>
   <ItemGroup>
