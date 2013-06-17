@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using Census.Core;
 using Census.Core.Interfaces;
 using umbraco.cms.businesslogic.datatype;
 using umbraco.cms.businesslogic.web;
@@ -23,7 +24,7 @@ namespace Census.UmbracoObjectRelations
             get { return typeof (DataTypeDefinition); }
         }
 
-        public IEnumerable<string> PagePath { get { return new List<string>() { "/developer/datatypes/editDataType.aspx" }; } }
+        public IEnumerable<string> PagePath { get { return new List<string>() {"/developer/datatypes/editDataType.aspx"}; } }
 
         public DataTable GetRelations(object id)
         {
@@ -33,11 +34,13 @@ namespace Census.UmbracoObjectRelations
 
             var dt = new DataTable();
             dt.Columns.Add("Name");
+            dt.Columns.Add("Assembly");
 
             foreach (var usage in usages)
             {
                 var row = dt.NewRow();
-                row["Name"] = usage.Text;
+                row["Name"] = Helper.GenerateLink(usage.Text, "developer", string.Format("/developer/datatypes/editDataType.aspx?id={0}", usage.Id), "developerDatatype.gif");
+                row["Assembly"] = usage.DataType.GetType().Assembly.FullName.Split(',')[0] + ".dll";
                 dt.Rows.Add(row);
                 row.AcceptChanges();
             }

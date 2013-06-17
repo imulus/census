@@ -14,12 +14,12 @@ using umbraco.cms.businesslogic.web;
 
 namespace Census.UmbracoObjectRelations
 {
-    public class TemplateToContent : IRelation
+    public class DocumentTypeToContent : IRelation
     {
 
         public object From
         {
-            get { return typeof(Template); }
+            get { return typeof(DocumentType); }
         } 
 
         public object To
@@ -27,13 +27,13 @@ namespace Census.UmbracoObjectRelations
             get { return typeof(Content); }
         }
 
-        public IEnumerable<string> PagePath { get { return new List<string>() { "/settings/editTemplate.aspx", "/settings/views/editView.aspx" }; } }
+        public IEnumerable<string> PagePath { get { return new List<string>() { "/settings/editNodeTypeNew.aspx" }; } }
 
         public DataTable GetRelations(object id)
         {
             var usages = new List<Document>();
 
-            using (var reader = Application.SqlHelper.ExecuteReader("SELECT DISTINCT nodeId FROM cmsDocument WHERE templateID = " + id))
+            using (var reader = Application.SqlHelper.ExecuteReader("SELECT DISTINCT nodeId FROM cmsContent WHERE contentType = " + id))
             {
                 while (reader.Read())
                 {

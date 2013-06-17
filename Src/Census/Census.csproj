@@ -172,6 +172,8 @@
     <Compile Include="Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UmbracoObjectRelations\DataTypeToProperty.cs" />
+    <Compile Include="UmbracoObjectRelations\DocumentTypeToContent.cs" />
+    <Compile Include="UmbracoObjectRelations\DocumentTypeToTemplate.cs" />
     <Compile Include="UmbracoObjectRelations\MacroToContent.cs" />
     <Compile Include="UmbracoObjectRelations\MacroToTemplate.cs" />
     <Compile Include="UmbracoObjectRelations\PropertyEditorToDataType.cs" />

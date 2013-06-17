@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using Census.Core;
 using Census.Core.Interfaces;
 using umbraco.cms.businesslogic.datatype;
 using umbraco.cms.businesslogic.template;
@@ -23,7 +24,7 @@ namespace Census.UmbracoObjectRelations
             get { return typeof (DocumentType); }
         }
 
-        public IEnumerable<string> PagePath { get { return new List<string>() { "/settings/editTemplate.aspx" }; } }
+        public IEnumerable<string> PagePath { get { return new List<string>() { "/settings/editTemplate.aspx", "/settings/views/editView.aspx" }; } }
 
         public DataTable GetRelations(object id)
         {
@@ -32,17 +33,15 @@ namespace Census.UmbracoObjectRelations
             // Convert doctypes into "Relations"
             var dt = new DataTable();
             dt.Columns.Add("Name");
-            dt.Columns.Add("Icon");
             dt.Columns.Add("Alias");
-            dt.Columns.Add("Default");
+            dt.Columns.Add("Default?");
 
             foreach (var usage in usages)
             {
                 var row = dt.NewRow();
-                row["Name"] = usage.Text;
-                row["Icon"] = usage.IconUrl;
+                row["Name"] = Helper.GenerateLink(usage.Text, "settings", "/settings/editNodeTypeNew.aspx?id=" + usage.Id, usage.IconUrl);
                 row["Alias"] = usage.Alias;
-                row["Default"] = (usage.DefaultTemplate == (int)id ? "Y" : "N");
+                row["Default?"] = (usage.DefaultTemplate == (int)id ? "YES" : "NO");
                 dt.Rows.Add(row);
                 row.AcceptChanges();
             }
