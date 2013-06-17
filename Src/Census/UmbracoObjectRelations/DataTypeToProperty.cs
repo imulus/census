@@ -32,14 +32,12 @@ namespace Census.UmbracoObjectRelations
             // Convert doctypes into "Relations"
             var dt = new DataTable();
             dt.Columns.Add("Name");
-            dt.Columns.Add("Icon");
             dt.Columns.Add("Alias");
 
             foreach (var usage in usages)
             {
                 var row = dt.NewRow();
-                row["Name"] = usage.Text;
-                row["Icon"] = usage.IconUrl;
+                row["Name"] = Helper.GenerateLink(usage.Text, "settings", string.Format("/settings/editNodeTypeNew.aspx?id={0}", usage.Id), usage.IconUrl);
                 row["Alias"] = usage.Alias;
                 dt.Rows.Add(row);
                 row.AcceptChanges();

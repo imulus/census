@@ -36,5 +36,10 @@ namespace Census.Core
                 return GlobalSettings.Path;
             }
         }
+
+        public static object UmbracoIconDirectory
+        {
+            get { return string.Concat(UmbracoDirectory, "/images/umbraco/"); }
+        }
     }
 }
