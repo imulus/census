@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace Census.Core.Interfaces
     {
         object From { get; }
         object To { get;  }
-        string PagePath { get; }
+        IEnumerable<string> PagePath { get; }
 
         DataTable GetRelations(object id);
     }

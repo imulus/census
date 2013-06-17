@@ -24,7 +24,7 @@ namespace Census.UmbracoObjectRelations
             get { return typeof(Template); }
         }
 
-        public string PagePath { get { return "/developer/macros/editMacro.aspx"; } }
+        public IEnumerable<string> PagePath { get { return new List<string>() { "/developer/macros/editMacro.aspx" }; } }
 
         public DataTable GetRelations(object id)
         {

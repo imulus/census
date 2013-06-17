@@ -22,7 +22,7 @@ namespace Census.UmbracoObjectRelations
             get { return typeof (DocumentType); }
         }
 
-        public string PagePath { get { return "/developer/datatypes/editDataType.aspx"; } }
+        public IEnumerable<string> PagePath { get { return new List<string>() { "/developer/datatypes/editDataType.aspx" }; } }
 
         public DataTable GetRelations(object id)
         {

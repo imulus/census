@@ -23,7 +23,7 @@ namespace Census.UmbracoObjectRelations
             get { return typeof (DocumentType); }
         }
 
-        public string PagePath { get { return "/settings/editTemplate.aspx"; } }
+        public IEnumerable<string> PagePath { get { return new List<string>() { "/settings/editTemplate.aspx" }; } }
 
         public DataTable GetRelations(object id)
         {

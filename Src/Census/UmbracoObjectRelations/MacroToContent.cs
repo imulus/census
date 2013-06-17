@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -26,7 +26,7 @@ namespace Census.UmbracoObjectRelations
             get { return typeof(Document); }
         }
 
-        public string PagePath { get { return "/developer/macros/editMacro.aspx"; } }
+        public IEnumerable<string> PagePath { get { return new List<string>() { "/developer/macros/editMacro.aspx" }; } }
 
         public DataTable GetRelations(object id)
         {

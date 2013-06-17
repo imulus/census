@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +25,7 @@ namespace Census.Core
         {
             return
                 Configuration.RelationDefinitions.Where(
-                    x => x.PagePath.ToLower() == pagePath.ToLower().Replace("/umbraco/", "/")).ToList();
+                    x => x.PagePath.Any(pp => pp.ToLower() == pagePath.ToLower().Replace("/umbraco/", "/"))).ToList();
         }
     }
 }
