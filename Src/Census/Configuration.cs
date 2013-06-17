@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Census.Core.Interfaces;
 using Census.UmbracoObjectRelations;
+using umbraco;
 
 namespace Census.Core
 {
@@ -25,7 +26,15 @@ namespace Census.Core
         {
             return
                 Configuration.RelationDefinitions.Where(
-                    x => x.PagePath.Any(pp => pp.ToLower() == pagePath.ToLower().Replace("/umbraco/", "/"))).ToList();
+                    x => x.PagePath.Any(pp => pp.ToLower() == pagePath.ToLower().Replace(UmbracoDirectory.ToLower(), string.Empty))).ToList();
+        }
+
+        public static string UmbracoDirectory
+        {
+            get
+            {
+                return GlobalSettings.Path;
+            }
         }
     }
 }
