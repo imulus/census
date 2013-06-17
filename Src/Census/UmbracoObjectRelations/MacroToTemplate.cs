@@ -25,14 +25,14 @@ namespace Census.UmbracoObjectRelations
             get { return typeof(Template); }
         }
 
-        public IEnumerable<string> PagePath { get { return new List<string>() {"/developer/macros/editMacro.aspx"}; } }
+        public IEnumerable<string> PagePath { get { return new List<string>() { "/developer/macros/editMacro.aspx" }; } }
 
         public DataTable GetRelations(object id)
         {
-            var macro = Macro.GetById((int) id);
+            var macro = Macro.GetById((int)id);
 
             var allTemplates = Template.GetAllAsList();
-            
+
             // TODO: Can optimize these to only check for their respective syntaxes
             var usages = allTemplates.Where(template => template.Design.ToLower().Contains("alias=\"" + macro.Alias.ToLower() + "\"")).ToList();
             var mvcUsages = allTemplates.Where(template => template.Design.ToLower().Contains("rendermacro(\"" + macro.Alias.ToLower() + "\"")).ToList();

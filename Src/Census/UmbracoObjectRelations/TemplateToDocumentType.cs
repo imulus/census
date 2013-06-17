@@ -14,21 +14,21 @@ namespace Census.UmbracoObjectRelations
     public class TemplateToDocumentType : IRelation
     {
 
-        public object From 
+        public object From
         {
-            get { return typeof (Template); }
+            get { return typeof(Template); }
         } // IUmbracoObject?
 
         public object To
         {
-            get { return typeof (DocumentType); }
+            get { return typeof(DocumentType); }
         }
 
         public IEnumerable<string> PagePath { get { return new List<string>() { "/settings/editTemplate.aspx", "/settings/views/editView.aspx" }; } }
 
         public DataTable GetRelations(object id)
         {
-           var usages = DocumentType.GetAllAsList().Where(x => x.allowedTemplates.Any(t => t.Id == (int)id));
+            var usages = DocumentType.GetAllAsList().Where(x => x.allowedTemplates.Any(t => t.Id == (int)id));
 
             // Convert doctypes into "Relations"
             var dt = new DataTable();

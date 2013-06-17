@@ -20,7 +20,7 @@ namespace Census.UmbracoObjectRelations
         public object From
         {
             get { return typeof(DocumentType); }
-        } 
+        }
 
         public object To
         {
@@ -59,6 +59,6 @@ namespace Census.UmbracoObjectRelations
             return dt;
 
         }
-        
+
     }
 }

@@ -170,6 +170,7 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="Events\PageEvents.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="Interfaces\IRelation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UmbracoObjectRelations\DataTypeToProperty.cs" />
     <Compile Include="UmbracoObjectRelations\DocumentTypeToContent.cs" />
@@ -189,6 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="Web\census-toolbar-icon.png" />
     <Content Include="Web\style.css" />
     <Content Include="Web\Usages.aspx" />
   </ItemGroup>

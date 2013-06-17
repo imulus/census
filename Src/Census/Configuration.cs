@@ -41,5 +41,10 @@ namespace Census.Core
         {
             get { return string.Concat(UmbracoDirectory, "/images/umbraco/"); }
         }
+
+        public static string PluginDirectory
+        {
+            get { return string.Concat(UmbracoDirectory, "/plugins/census/"); }
+        }
     }
 }

@@ -12,14 +12,14 @@ namespace Census.UmbracoObjectRelations
     public class DataTypeToProperty : IRelation
     {
 
-        public object From 
+        public object From
         {
-            get { return typeof (DataTypeDefinition); }
+            get { return typeof(DataTypeDefinition); }
         }
 
         public object To
         {
-            get { return typeof (DocumentType); }
+            get { return typeof(DocumentType); }
         }
 
         public IEnumerable<string> PagePath { get { return new List<string>() { "/developer/datatypes/editDataType.aspx" }; } }

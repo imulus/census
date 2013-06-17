@@ -34,7 +34,7 @@ namespace Census.UmbracoObjectRelations
         {
             var macro = Macro.GetById((int)id);
             var usages = new List<Document>();
-            
+
             var xmlNodeByXPath = library.GetXmlNodeByXPath("/root//* [@isDoc][contains(bodyText, 'macroAlias=\"" + macro.Alias + "\"')]"); // TODO: Support legacy schema?  Unpublished?  Support non-bodyText fields
             while (xmlNodeByXPath.MoveNext())
             {

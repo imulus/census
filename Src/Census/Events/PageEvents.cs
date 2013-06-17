@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,7 +44,7 @@ namespace Census.Events
         {
             int pageId;
             int.TryParse(HttpContext.Current.Request.QueryString["id"], out pageId);
-            
+
             // TODO: Hack for differing querystrings / consolidate
             if (pageId == 0)
                 int.TryParse(HttpContext.Current.Request.QueryString["templateID"], out pageId);
@@ -54,7 +54,7 @@ namespace Census.Events
             var menu = (ScrollingMenu)Utility.FindControl<Control>((Control c) => c.ClientID.EndsWith("_menu"), page.Page);
             if (menu == null)
             {
-                var tabView = (TabView) Utility.FindControl<Control>((Control c) => c.ID == "TabView1", page.Page);
+                var tabView = (TabView)Utility.FindControl<Control>((Control c) => c.ID == "TabView1", page.Page);
 
                 foreach (TabPage page3 in tabView.GetPanels())
                 {
@@ -65,7 +65,7 @@ namespace Census.Events
             {
                 AddMenuIcon(menu, page, pageId);
             }
-                
+
 
             string s = "<script type='text/javascript'>";
             s += "$(document).ready(function() {";
@@ -86,7 +86,7 @@ namespace Census.Events
             MenuIconI ni = menu.NewIcon();
             ni.AltText = "View Usages";
             ni.OnClickCommand = string.Format("UmbClientMgr.openModalWindow('plugins/census/usages.aspx?sourcePage={0}&sourceId={1}', 'Usages', true, 600, 500, 0, 0); return false;", page.Request.Path, pageId);
-            ni.ImageURL = "/umbraco/plugins/census/census-toolbar-icon.png"; 
+            ni.ImageURL = string.Concat(Configuration.PluginDirectory, "census-toolbar-icon.png");
         }
     }
 }

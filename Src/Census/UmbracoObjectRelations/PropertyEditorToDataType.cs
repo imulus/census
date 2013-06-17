@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -14,17 +14,17 @@ namespace Census.UmbracoObjectRelations
     public class PropertyEditorToDataType : IRelation
     {
 
-        public object From 
+        public object From
         {
-            get { return typeof (IDataType); } // RenderControl/PropertyEditor...
+            get { return typeof(IDataType); } // RenderControl/PropertyEditor...
         }
 
         public object To
         {
-            get { return typeof (DataTypeDefinition); }
+            get { return typeof(DataTypeDefinition); }
         }
 
-        public IEnumerable<string> PagePath { get { return new List<string>() {"/developer/datatypes/editDataType.aspx"}; } }
+        public IEnumerable<string> PagePath { get { return new List<string>() { "/developer/datatypes/editDataType.aspx" }; } }
 
         public DataTable GetRelations(object id)
         {
