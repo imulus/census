@@ -19,15 +19,13 @@ namespace Census.UmbracoObjectRelations
 
         public object From
         {
-            get { return typeof(Template); }
+            get { return typeof(UmbracoObject.Template); }
         }
 
         public object To
         {
-            get { return typeof(Content); }
+            get { return typeof(UmbracoObject.Content); }
         }
-
-        public IEnumerable<string> PagePath { get { return new List<string>() { "/settings/editTemplate.aspx", "/settings/views/editView.aspx" }; } }
 
         public DataTable GetRelations(object id)
         {
@@ -41,23 +39,7 @@ namespace Census.UmbracoObjectRelations
                 }
             }
 
-            // Convert doc into "Relations"
-            var dt = new DataTable();
-            dt.Columns.Add("Name");
-            dt.Columns.Add("Published?");
-            dt.Columns.Add("Updated");
-
-            foreach (var usage in usages)
-            {
-                var row = dt.NewRow();
-                row["Name"] = Helper.GenerateLink(usage.Text, "content", "/editContent.aspx?id=" + usage.Id, usage.ContentTypeIcon);
-                row["Published?"] = usage.HasPublishedVersion() ? "YES" : "NO";
-                row["Updated"] = usage.UpdateDate;
-                dt.Rows.Add(row);
-                row.AcceptChanges();
-            }
-
-            return dt;
+            return UmbracoObject.Content.ToDataTable(usages);
         }
 
     }

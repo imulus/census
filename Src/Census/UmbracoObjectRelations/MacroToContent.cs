@@ -28,8 +28,6 @@ namespace Census.UmbracoObjectRelations
             get { return typeof(Content); }
         }
 
-        public IEnumerable<string> PagePath { get { return new List<string>() { "/developer/macros/editMacro.aspx" }; } }
-
         public DataTable GetRelations(object id)
         {
             var macro = Macro.GetById((int)id);
@@ -41,21 +39,9 @@ namespace Census.UmbracoObjectRelations
                 usages.Add(new Document(int.Parse(xmlNodeByXPath.Current.GetAttribute("id", ""))));
             }
 
-            // Convert doctypes into "Relations"
-            var dt = new DataTable();
-            dt.Columns.Add("Name");
 
-            foreach (var usage in usages)
-            {
-                var row = dt.NewRow();
-                row["Name"] = Helper.GenerateLink(usage.Text, "content", "/editContent.aspx?id=" + usage.Id, usage.ContentTypeIcon);
-                dt.Rows.Add(row);
-                row.AcceptChanges();
-            }
-
-            return dt;
+            return UmbracoObject.Content.ToDataTable(usages);
         }
-
 
     }
 }

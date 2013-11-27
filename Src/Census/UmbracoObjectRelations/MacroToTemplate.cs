@@ -17,15 +17,13 @@ namespace Census.UmbracoObjectRelations
 
         public object From
         {
-            get { return typeof(Macro); }
+            get { return typeof(UmbracoObject.Macro); }
         }
 
         public object To
         {
-            get { return typeof(Template); }
+            get { return typeof(UmbracoObject.Template); }
         }
-
-        public IEnumerable<string> PagePath { get { return new List<string>() { "/developer/macros/editMacro.aspx" }; } }
 
         public DataTable GetRelations(object id)
         {
@@ -39,29 +37,8 @@ namespace Census.UmbracoObjectRelations
 
             usages.InsertRange(0, mvcUsages);
 
-            // Convert doctypes into "Relations"
-            var dt = new DataTable();
-            dt.Columns.Add("Name");
-            dt.Columns.Add("Alias");
-
-            foreach (var usage in usages)
-            {
-                var row = dt.NewRow();
-                var url = usage.MasterPageFile.EndsWith("cshtml")
-                              ? "/settings/views/editView.aspx?templateId=" + usage.Id
-                              : "/settings/editTemplate.aspx?id=" + usage.Id;
-                var icon = usage.MasterPageFile.EndsWith("cshtml")
-                               ? "settingView.gif"
-                               : "settingMasterTemplate.gif";
-                row["Name"] = Helper.GenerateLink(usage.Text, "settings", url, icon);
-                row["Alias"] = usage.Alias;
-                dt.Rows.Add(row);
-                row.AcceptChanges();
-            }
-
-            return dt;
+            return UmbracoObject.Template.ToDataTable(usages);
         }
-
 
     }
 }

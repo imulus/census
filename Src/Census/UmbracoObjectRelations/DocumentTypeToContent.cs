@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using Census.Core;
 using Census.Core.Interfaces;
+using umbraco;
 using umbraco.BusinessLogic;
 using umbraco.DataLayer;
 using umbraco.cms.businesslogic;
@@ -19,15 +20,13 @@ namespace Census.UmbracoObjectRelations
 
         public object From
         {
-            get { return typeof(DocumentType); }
+            get { return typeof(UmbracoObject.DocumentType); }
         }
 
         public object To
         {
-            get { return typeof(Content); }
+            get { return typeof(UmbracoObject.Content); }
         }
-
-        public IEnumerable<string> PagePath { get { return new List<string>() { "/settings/editNodeTypeNew.aspx" }; } }
 
         public DataTable GetRelations(object id)
         {
@@ -41,23 +40,7 @@ namespace Census.UmbracoObjectRelations
                 }
             }
 
-            // Convert doc into "Relations"
-            var dt = new DataTable();
-            dt.Columns.Add("Name");
-            dt.Columns.Add("Published?");
-            dt.Columns.Add("Updated");
-
-            foreach (var usage in usages)
-            {
-                var row = dt.NewRow();
-                row["Name"] = Helper.GenerateLink(usage.Text, "content", "/editContent.aspx?id=" + usage.Id, usage.ContentTypeIcon);
-                row["Published?"] = usage.HasPublishedVersion() ? "YES" : "NO";
-                row["Updated"] = usage.UpdateDate;
-                dt.Rows.Add(row);
-                row.AcceptChanges();
-            }
-
-            return dt;
+            return UmbracoObject.Content.ToDataTable(usages);
         }
 
     }

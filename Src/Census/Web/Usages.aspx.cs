@@ -17,9 +17,10 @@ namespace Census.Web
         {
             var sourcePage = HttpContext.Current.Request.QueryString["sourcePage"];
             var sourceId = int.Parse(HttpContext.Current.Request.QueryString["sourceId"]);
-            var relationTypes = Configuration.GetRelationsByPagePath(sourcePage);
+            var umbracoObjectsForPage = Configuration.GetUmbracoObjectsByPagePath(sourcePage);
+            var relationTypesForPage = Configuration.RelationDefinitions.Where(x => umbracoObjectsForPage.Select(uo => uo.GetType()).Contains(x.From));
 
-            foreach (var relationType in relationTypes)
+            foreach (var relationType in relationTypesForPage)
             {
                 var relations = relationType.GetRelations(sourceId);
 

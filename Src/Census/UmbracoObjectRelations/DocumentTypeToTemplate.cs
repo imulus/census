@@ -19,15 +19,13 @@ namespace Census.UmbracoObjectRelations
 
         public object From
         {
-            get { return typeof(DocumentType); }
+            get { return typeof(UmbracoObject.DocumentType); }
         }
 
         public object To
         {
-            get { return typeof(Template); }
+            get { return typeof(UmbracoObject.Template); }
         }
-
-        public IEnumerable<string> PagePath { get { return new List<string>() { "/settings/editNodeTypeNew.aspx" }; } }
 
         public DataTable GetRelations(object id)
         {
@@ -35,29 +33,7 @@ namespace Census.UmbracoObjectRelations
 
             var templates = currentDocType.allowedTemplates;
 
-            // Convert doctypes into "Relations"
-            var dt = new DataTable();
-            dt.Columns.Add("Name");
-            dt.Columns.Add("Alias");
-            dt.Columns.Add("Default?");
-
-            foreach (var usage in templates)
-            {
-                var row = dt.NewRow();
-                var url = usage.MasterPageFile.EndsWith("cshtml")
-                              ? "/settings/views/editView.aspx?templateId=" + usage.Id
-                              : "/settings/editTemplate.aspx?id=" + usage.Id;
-                var icon = usage.MasterPageFile.EndsWith("cshtml")
-                               ? "settingView.gif"
-                               : "settingMasterTemplate.gif";
-                row["Name"] = Helper.GenerateLink(usage.Text, "settings", url, icon);
-                row["Alias"] = usage.Alias;
-                row["Default?"] = (currentDocType.DefaultTemplate == usage.Id ? "YES" : "NO");
-                dt.Rows.Add(row);
-                row.AcceptChanges();
-            }
-            return dt;
-
+            return UmbracoObject.Template.ToDataTable(templates);
         }
 
     }

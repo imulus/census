@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Census.Core.Interfaces;
+using Census.Interfaces;
+using Census.UmbracoObject;
 using Census.UmbracoObjectRelations;
 using umbraco;
 
@@ -18,16 +20,26 @@ namespace Census.Core
             get
             {
                 // TODO: Configurable via TypeFinder or otherwise
-                return new List<IRelation>() { new DocumentTypeToContent(), new DocumentTypeToTemplate(), new DataTypeToProperty(), new TemplateToContent(), new TemplateToDocumentType(), new PropertyEditorToDataType(), new MacroToTemplate(), new MacroToContent() };
+                return new List<IRelation>() { new DocumentTypeToContent(), new DocumentTypeToTemplate(), new DataTypeToProperty(), new TemplateToContent(), new TemplateToDocumentType(), new DataTypeToPropertyEditor(), new MacroToTemplate(), new MacroToContent() };
             }
         }
 
-        public static List<IRelation> GetRelationsByPagePath(string pagePath)
+        public static List<IUmbracoObject> UmbracoObjects
         {
-            return
-                Configuration.RelationDefinitions.Where(
-                    x => x.PagePath.Any(pp => pp.ToLower() == pagePath.ToLower().Replace(UmbracoDirectory.ToLower(), string.Empty))).ToList();
-        }
+            get
+            {
+                return new List<IUmbracoObject>() { new Content(), new DataType(), new DocumentType(), new Macro(), new PropertyEditor(), new Template() };
+            }
+        } 
+
+        public static List<IUmbracoObject> GetUmbracoObjectsByPagePath(string pagePath)
+        {
+            return Configuration.UmbracoObjects.Where(
+                x =>
+                    x.BackofficePages.Any(
+                        bp => bp.ToLower() == pagePath.ToLower().Replace(UmbracoDirectory.ToLower(), string.Empty))).ToList();
+            
+        } 
 
         public static string UmbracoDirectory
         {

@@ -33,9 +33,9 @@ namespace Census.Events
 
             var path = umbPage.Page.Request.Path.ToLower();
 
-            if (!Configuration.GetRelationsByPagePath(path).Any())
-                return;
 
+            if (!Configuration.GetUmbracoObjectsByPagePath(path).Any())
+                return;
 
             AddToolbarButton(umbPage);
         }
