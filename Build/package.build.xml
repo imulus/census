@@ -106,6 +106,14 @@
 			Files="@(ManifestFiles)" />
 	</Target>
 
+	<!-- Copies the application files to the corresponding directory -->
+	<Target Name="DeployApp" DependsOnTargets="ManifestUmbraco">
+		<Message Text="Copying application files to $(DestinationPath)..." />
+		<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(DestinationPath)\bin" />
+		<Copy SourceFiles="@(WebFiles)" DestinationFolder="$(DestinationPath)\umbraco\plugins\census" />
+		<Copy SourceFiles="@(CssFiles)" DestinationFolder="$(DestinationPath)\umbraco\plugins\census" />
+	</Target>
+
 	<!-- PACKAGE -->
 	<Target Name="Package" DependsOnTargets="ManifestNuget">
 		<ItemGroup>
@@ -123,5 +131,4 @@
 		<RemoveDir Directories="$(BuildUmbDir)" Condition="Exists('$(BuildDir)')" />
 		<RemoveDir Directories="$(BuildNuGetDir)" Condition="Exists('$(BuildDir)')" />
 	</Target>
-
 </Project>
