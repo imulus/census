@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 using Census.Interfaces;
 using umbraco.cms.businesslogic.web;
@@ -38,7 +39,7 @@ namespace Census.UmbracoObject
             {
                 var row = dt.NewRow();
 
-                row["Name"] = Helper.GenerateLink(usage);
+                row["Name"] = Helper.GenerateLink(usage.Text, "content", "editContent.aspx?id=" + usage.Id, usage.ContentTypeIcon, tooltip: GetFriendlyPathForDocument(usage));
                 row["Published?"] = usage.HasPublishedVersion() ? "YES" : "NO";
                 row["Updated"] = usage.UpdateDate;
                 dt.Rows.Add(row);
@@ -46,6 +47,27 @@ namespace Census.UmbracoObject
             }
 
             return dt;
+        }
+
+        private static string GetFriendlyPathForDocument(Document document)
+        {
+            const string separator = "->";
+
+            var nodesInPath = document.Path.Split(',').Skip(1);
+
+            var retVal = new StringBuilder();
+
+            foreach (var nodeId in nodesInPath)
+            {
+                var currentDoc = new Document(int.Parse(nodeId));
+
+                if (currentDoc == null || string.IsNullOrEmpty(currentDoc.Path))
+                    continue;
+
+                retVal.AppendFormat("{0} {1} ", currentDoc.Text, separator);
+            }
+
+            return retVal.ToString().Substring(0, retVal.ToString().LastIndexOf(separator)).Trim();
         }
 
     }
