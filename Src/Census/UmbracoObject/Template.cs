@@ -40,6 +40,9 @@ namespace Census.UmbracoObject
                 var icon = template.MasterPageFile.EndsWith("cshtml")
                                ? "settingView.gif"
                                : "settingMasterTemplate.gif";
+                if (template.HasChildren)
+                    icon = "settingMasterTemplate.gif";
+
                 row["Name"] = Helper.GenerateLink(template.Text, "settings", url, icon);
                 row["Alias"] = template.Alias;
                 dt.Rows.Add(row);
