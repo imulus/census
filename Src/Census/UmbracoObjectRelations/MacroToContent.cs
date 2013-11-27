@@ -20,12 +20,12 @@ namespace Census.UmbracoObjectRelations
 
         public object From
         {
-            get { return typeof(Macro); }
+            get { return typeof(UmbracoObject.Macro); }
         }
 
         public object To
         {
-            get { return typeof(Content); }
+            get { return typeof(UmbracoObject.Content); }
         }
 
         public DataTable GetRelations(object id)

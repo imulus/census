@@ -14,7 +14,7 @@ namespace Census.UmbracoObject
 
         public List<string> BackofficePages
         {
-            get { return new List<string>() {"/developer/datatypes/editDataType.aspx"}; }
+            get { return new List<string>(); }
         } 
 
         DataTable IUmbracoObject.ToDataTable(object usages)
