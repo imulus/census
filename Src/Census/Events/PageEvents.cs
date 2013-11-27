@@ -83,9 +83,13 @@ namespace Census.Events
 
         private void AddMenuIcon(ScrollingMenu menu, umbracoPage page, int pageId)
         {
+            var title = "";
+            Configuration.GetUmbracoObjectsByPagePath(page.Request.Path).ForEach(o => title += o.Name + ",");
+            title = title.TrimEnd(',') + " Usages";
+
             MenuIconI ni = menu.NewIcon();
             ni.AltText = "View Usages";
-            ni.OnClickCommand = string.Format("UmbClientMgr.openModalWindow('plugins/census/usages.aspx?sourcePage={0}&sourceId={1}', 'Usages', true, 600, 500, 0, 0); return false;", page.Request.Path, pageId);
+            ni.OnClickCommand = string.Format("UmbClientMgr.openModalWindow('plugins/census/usages.aspx?sourcePage={0}&sourceId={1}', '{2}', true, 600, 500, 0, 0); return false;", page.Request.Path, pageId, title);
             ni.ImageURL = string.Concat(Configuration.PluginDirectory, "census-toolbar-icon.png");
         }
     }
