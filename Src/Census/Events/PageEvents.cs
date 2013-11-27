@@ -84,9 +84,7 @@ namespace Census.Events
 
         private void AddMenuIcon(ScrollingMenu menu, umbracoPage page, int pageId)
         {
-            var title = "";
-            Configuration.GetUmbracoObjectsByPagePath(page.Request.Path).ForEach(o => title += o.Name + ",");
-            title = title.TrimEnd(',') + " Usages";
+            var title = Configuration.GetUmbracoObjectsByPagePath(page.Request.Path).First().Name + " Usages";
 
             MenuIconI ni = menu.NewIcon();
             ni.AltText = "View Usages";
