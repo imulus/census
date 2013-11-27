@@ -33,7 +33,7 @@ namespace Census.UmbracoObject
             foreach (var documentType in documentTypes)
             {
                 var row = dt.NewRow();
-                row["Name"] = Helper.GenerateLink(documentType.Text, "settings", "/settings/editNodeTypeNew.aspx?id=" + documentType.Id, documentType.IconUrl);
+                row["Name"] = Helper.GenerateLink(documentType.Text, "settings", "/settings/editNodeTypeNew.aspx?id=" + documentType.Id, "settingMasterDataType.gif");
                 row["Alias"] = documentType.Alias;
                 if (propertyId > 0)
                 {

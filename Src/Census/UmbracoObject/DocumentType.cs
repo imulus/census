@@ -34,7 +34,7 @@ namespace Census.UmbracoObject
             foreach (var documentType in documentTypes)
             {
                 var row = dt.NewRow();
-                row["Name"] = Helper.GenerateLink(documentType.Text, "settings", "/settings/editNodeTypeNew.aspx?id=" + documentType.Id, documentType.IconUrl);
+                row["Name"] = Helper.GenerateLink(documentType.Text, "settings", "/settings/editNodeTypeNew.aspx?id=" + documentType.Id, "settingMasterDataType.gif");
                 row["Alias"] = documentType.Alias;
                 if (currentUsageId > 0)
                     row["Default?"] = (documentType.DefaultTemplate == currentUsageId ? "YES" : "NO");
