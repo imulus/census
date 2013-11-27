@@ -34,6 +34,11 @@ namespace Census.UmbracoObjectRelations
             return PropertyEditor.ToDataTable(usages);
         }
 
+        public string Description
+        {
+            get { return "Property Editors (aka Render Controls) used by this Datatype"; }
+        }
+
 
     }
 }

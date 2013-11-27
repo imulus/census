@@ -58,5 +58,11 @@ namespace Census.Core
         {
             get { return string.Concat(UmbracoDirectory, "/plugins/census/"); }
         }
+
+        public static bool ShowDescriptions
+        {
+            get { return true; }
+        }
+
     }
 }

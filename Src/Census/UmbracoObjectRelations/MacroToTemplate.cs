@@ -25,6 +25,11 @@ namespace Census.UmbracoObjectRelations
             get { return typeof(UmbracoObject.Template); }
         }
 
+        public string Description
+        {
+            get { return "Templates that reference this macro using standard macro syntax"; }
+        }
+
         public DataTable GetRelations(object id)
         {
             var macro = Macro.GetById((int)id);

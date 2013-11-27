@@ -11,6 +11,7 @@ namespace Census.Core.Interfaces
     {
         object From { get; }
         object To { get; }
+        string Description { get; }
 
         DataTable GetRelations(object id);
     }

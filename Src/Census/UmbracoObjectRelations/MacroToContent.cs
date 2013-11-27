@@ -25,7 +25,12 @@ namespace Census.UmbracoObjectRelations
 
         public object To
         {
-            get { return typeof(UmbracoObject.Content); }
+            get { return typeof (UmbracoObject.Content); }
+        }
+
+        public string Description
+        {
+            get { return "Content Pages that use this Macro in a Richtext Editor (published pages only)";  }
         }
 
         public DataTable GetRelations(object id)

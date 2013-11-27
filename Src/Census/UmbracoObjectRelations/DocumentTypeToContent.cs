@@ -28,6 +28,11 @@ namespace Census.UmbracoObjectRelations
             get { return typeof(UmbracoObject.Content); }
         }
 
+        public string Description
+        {
+            get { return "Content pages using this Document Type"; }
+        }
+
         public DataTable GetRelations(object id)
         {
             var usages = new List<Document>();

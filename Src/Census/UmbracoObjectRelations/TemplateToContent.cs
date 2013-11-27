@@ -27,6 +27,11 @@ namespace Census.UmbracoObjectRelations
             get { return typeof(UmbracoObject.Content); }
         }
 
+        public string Description
+        {
+            get { return "Content pages that have this template selected"; }
+        }
+
         public DataTable GetRelations(object id)
         {
             var usages = new List<Document>();

@@ -34,3 +34,8 @@
 
 .censusTable tbody tr:last-child td       { border-bottom:1px solid #CCCCCC; }
 .censusTable tbody tr:first-child td      { border-top:1px solid silver; }
+
+.description {
+    padding: 8px 0 3px 5px;
+    display: inline-block;
+}

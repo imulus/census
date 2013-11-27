@@ -31,5 +31,13 @@ namespace Census.UmbracoObjectRelations
             return UmbracoObject.DocumentType.ToDataTable(usages);
         }
 
+        public string Description
+        {
+            get
+            {
+                return "Document Types that have a property of this Datatype";
+            }
+        }
+
     }
 }

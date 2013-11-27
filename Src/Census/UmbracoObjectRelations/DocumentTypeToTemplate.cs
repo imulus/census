@@ -27,6 +27,10 @@ namespace Census.UmbracoObjectRelations
             get { return typeof(UmbracoObject.Template); }
         }
 
+        public string Description
+        {
+            get { return "Templates which are allowed by this document type";  }
+        }
         public DataTable GetRelations(object id)
         {
             var currentDocType = new DocumentType(int.Parse(id.ToString()));

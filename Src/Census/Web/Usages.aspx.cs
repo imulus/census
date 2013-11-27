@@ -27,6 +27,9 @@ namespace Census.Web
                 var tabPage = TabView1.NewTabPage(relationType.To.ToString().Split('.').Last() + " (" + relations.Rows.Count + ")");
                 tabPage.HasMenu = false;
 
+                if (Configuration.ShowDescriptions)
+                    tabPage.Controls.Add(new LiteralControl("<span class='description'>" + relationType.Description + "</span>"));
+
                 var pane = new Pane();
                 pane.Controls.Add(DataTableToHtml(relations));
                 tabPage.Controls.Add(pane);

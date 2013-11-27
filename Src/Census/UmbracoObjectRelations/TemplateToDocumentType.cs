@@ -24,6 +24,11 @@ namespace Census.UmbracoObjectRelations
             get { return typeof(UmbracoObject.DocumentType); }
         }
 
+        public string Description
+        {
+            get { return "Document Types that allow this template to be selected"; }
+        }
+
         public DataTable GetRelations(object id)
         {
             var usages = DocumentType.GetAllAsList().Where(x => x.allowedTemplates.Any(t => t.Id == (int)id));
