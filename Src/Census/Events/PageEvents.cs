@@ -58,6 +58,7 @@ namespace Census.Events
 
                 foreach (TabPage page3 in tabView.GetPanels())
                 {
+                    page3.Menu.InsertSplitter();
                     AddMenuIcon(page3.Menu, page, pageId);
                 }
             }
@@ -72,10 +73,10 @@ namespace Census.Events
             s += @"$('.editorIcon[alt]').each(
             function() { 
                 if ($(this).attr('alt').indexOf('View Usages') != -1) {
-                    $(this).css('padding-bottom', '4px').css('cursor', 'pointer'); } });";
+                    $(this).css('cursor', 'pointer'); } });";
             s += "});";
             s += "</script>";
-            page.Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "jsfixpadding", s);
+            page.Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "jsfixcursor", s);
 
             string strCss = "<style type='text/css'>.mceToolbarExternal{padding-left: 15px;}</style>";
             page.Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "cssfixtoolbar", strCss);
