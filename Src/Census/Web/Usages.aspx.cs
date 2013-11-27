@@ -41,11 +41,6 @@ namespace Census.Web
             }
         }
 
-        private void InitTabs()
-        {
-            
-        }
-
         private LiteralControl DataTableToHtml(DataTable dt)
         {
             var sb = new StringBuilder();

@@ -17,7 +17,7 @@ namespace Census.UmbracoObjectRelations
         public object From
         {
             get { return typeof(UmbracoObject.Template); }
-        } // IUmbracoObject?
+        }
 
         public object To
         {
