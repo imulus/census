@@ -10,4 +10,6 @@ Build/Temp
 Thumbs.db
 .DS_Store
 
+_build
+
 src/[Pp]ackages

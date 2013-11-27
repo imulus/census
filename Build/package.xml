@@ -5,7 +5,7 @@
 			<name>Census</name>
 			<version>0.1.0</version>
 			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
-			<url>http://our.umbraco.org/projects</url>
+			<url>http://github.com/imulus/census/</url>
 			<requirements>
 				<major>0</major>
 				<minor>1</minor>

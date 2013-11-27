@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>Census</id>
+		<version>0.1.0</version>
+		<title>Census</title>
+		<authors>Tom Fulton</authors>
+		<owners>Tom Fulton</owners>
+		<projectUrl>http://our.umbraco.org/projects/backoffice-extensions/census/</projectUrl>
+		<summary>Census for Umbraco</summary>
+		<description><![CDATA[Census for Umbraco]]></description>
+		<tags>umbraco</tags>
+		<!--<iconUrl></iconUrl>-->
+	</metadata>
+	<files />
+</package>
