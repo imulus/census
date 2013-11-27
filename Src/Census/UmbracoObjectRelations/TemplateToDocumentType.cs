@@ -32,7 +32,7 @@ namespace Census.UmbracoObjectRelations
         public DataTable GetRelations(object id)
         {
             var usages = DocumentType.GetAllAsList().Where(x => x.allowedTemplates.Any(t => t.Id == (int)id));
-            return UmbracoObject.DocumentType.ToDataTable(usages);
+            return UmbracoObject.DocumentType.ToDataTable(usages, (int) id);
         }
 
     }

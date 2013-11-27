@@ -21,22 +21,23 @@ namespace Census.UmbracoObject
             return ToDataTable(usages);
         }
 
-        public static DataTable ToDataTable(object usages)
+        public static DataTable ToDataTable(object usages, int currentUsageId = 0)
         {
             var documentTypes = (IEnumerable<global::umbraco.cms.businesslogic.web.DocumentType>) usages;
 
             var dt = new DataTable();
             dt.Columns.Add("Name");
             dt.Columns.Add("Alias");
-            dt.Columns.Add("Default?");
+            if (currentUsageId > 0)
+                dt.Columns.Add("Default?");
 
             foreach (var documentType in documentTypes)
             {
                 var row = dt.NewRow();
                 row["Name"] = Helper.GenerateLink(documentType.Text, "settings", "/settings/editNodeTypeNew.aspx?id=" + documentType.Id, documentType.IconUrl);
                 row["Alias"] = documentType.Alias;
-                //row["Default?"] = (documentType.DefaultTemplate == (int)id ? "YES" : "NO");
-                row["Default?"] = "TODO";
+                if (currentUsageId > 0)
+                    row["Default?"] = (documentType.DefaultTemplate == currentUsageId ? "YES" : "NO");
                 dt.Rows.Add(row);
                 row.AcceptChanges();
             }

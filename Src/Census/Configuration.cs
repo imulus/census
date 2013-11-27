@@ -28,7 +28,7 @@ namespace Census.Core
         {
             get
             {
-                return new List<IUmbracoObject>() { new Content(), new DataType(), new DocumentType(), new Macro(), new PropertyEditor(), new Template() };
+                return new List<IUmbracoObject>() { new Content(), new DataType(), new DocumentType(), new Macro(), new Property(), new PropertyEditor(), new Template() };
             }
         } 
 

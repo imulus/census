@@ -20,7 +20,7 @@ namespace Census.UmbracoObjectRelations
 
         public object To
         {
-            get { return typeof(UmbracoObject.DocumentType); }
+            get { return typeof(UmbracoObject.Property); }
         }
 
         public DataTable GetRelations(object id)
@@ -28,7 +28,7 @@ namespace Census.UmbracoObjectRelations
             var dataType = DataTypeDefinition.GetDataTypeDefinition((int)id);
             var usages = DocumentType.GetAllAsList().Where(x => x.PropertyTypes.Any(pt => pt.DataTypeDefinition.Id == dataType.Id));
 
-            return UmbracoObject.DocumentType.ToDataTable(usages);
+            return UmbracoObject.Property.ToDataTable(usages, dataType.Id);
         }
 
         public string Description
