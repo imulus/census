@@ -39,7 +39,13 @@ namespace Census.Core
                     x.BackofficePages.Any(
                         bp => bp.ToLower() == pagePath.ToLower().Replace(UmbracoDirectory.ToLower(), string.Empty))).ToList();
             
-        } 
+        }
+
+        public static IUmbracoObject ResolveUmbracoObject(object umbracoObjectType)
+        {
+            var typeName = ((Type) umbracoObjectType).Name;
+            return UmbracoObjects.FirstOrDefault(o => o.GetType().Name == typeName);
+        }
 
         public static string UmbracoDirectory
         {

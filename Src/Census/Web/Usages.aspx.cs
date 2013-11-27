@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Census.Core;
+using Census.Core.Interfaces;
+using Census.Interfaces;
 using umbraco.uicontrols;
 
 namespace Census.Web
@@ -24,7 +26,10 @@ namespace Census.Web
             {
                 var relations = relationType.GetRelations(sourceId);
 
-                var tabPage = TabView1.NewTabPage(relationType.To.ToString().Split('.').Last() + " (" + relations.Rows.Count + ")");
+
+                var tabCaption = Configuration.ResolveUmbracoObject(relationType.To).Name;
+
+                var tabPage = TabView1.NewTabPage(tabCaption + " (" + relations.Rows.Count + ")");
                 tabPage.HasMenu = false;
 
                 if (Configuration.ShowDescriptions)
