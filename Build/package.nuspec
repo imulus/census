@@ -9,7 +9,7 @@
 		<projectUrl>http://our.umbraco.org/projects/developer-tools/census</projectUrl>
 		<description><![CDATA[Census is an Umbraco package that makes it easy to see relationships between various Umbraco entities.]]></description>
 		<tags>umbraco</tags>
-		<iconUrl>http://github.com/imulus/census/raw/master/Assets/logo-48.png</iconUrl>
+		<iconUrl>http://github.com/imulus/census/raw/master/Assets/logo.png</iconUrl>
 		<licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
 	</metadata>
 	<files />
