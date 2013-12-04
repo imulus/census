@@ -39,7 +39,7 @@ namespace Census.UmbracoObjectRelations
 
         public string Description
         {
-            get { return "Property Editors (aka Render Controls) used by this Datatype"; }
+            get { return "The Property Editor (aka Render Control) used by this datatype, and a list of other DataTypes that use the same Property Editor"; }
         }
 
 
