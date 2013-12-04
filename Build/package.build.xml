@@ -65,7 +65,7 @@
 		<ItemGroup>
 			<BinFiles Include="$(ProjectDir)\Bin\Census*.dll" />
 			<PackageFile Include="$(PackageDir)\package.xml" />
-			<WebFiles Include="$(ProjectDir)\Web\*.*" />
+			<WebFiles Include="$(ProjectDir)\Web\*.*" Exclude="$(ProjectDir)\Web\*.cs"/>
 			<NuSpecFile Include="$(MSBuildProjectDirectory)\package.nuspec" />
 		</ItemGroup>
 		<!-- COPY FOR UMBRACO PACKAGE -->
