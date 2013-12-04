@@ -2,15 +2,15 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>Census</id>
-		<version>0.1.0</version>
+		<version></version>
 		<title>Census</title>
-		<authors>Tom Fulton</authors>
-		<owners>Tom Fulton</owners>
-		<projectUrl>http://our.umbraco.org/projects/backoffice-extensions/census/</projectUrl>
-		<summary>Census for Umbraco</summary>
-		<description><![CDATA[Census for Umbraco]]></description>
+		<authors>imulus, Tom Fulton</authors>
+		<owners>imulus, Tom Fulton</owners>
+		<projectUrl>http://our.umbraco.org/projects/developer-tools/census</projectUrl>
+		<description><![CDATA[Census is an Umbraco package that makes it easy to see relationships between various Umbraco entities.]]></description>
 		<tags>umbraco</tags>
-		<!--<iconUrl></iconUrl>-->
+		<iconUrl>http://github.com/imulus/census/raw/master/Assets/logo-48.png</iconUrl>
+		<licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
 	</metadata>
 	<files />
 </package>
