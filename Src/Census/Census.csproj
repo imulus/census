@@ -205,15 +205,7 @@
     <Content Include="Web\style.css" />
     <Content Include="Web\Usages.aspx" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Census.Core\Census.Core.csproj">
-      <Project>{8A9085C2-4672-4721-BF0D-A8FF0E085B58}</Project>
-      <Name>Census.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Web\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

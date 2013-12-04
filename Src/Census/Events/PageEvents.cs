@@ -64,22 +64,9 @@ namespace Census.Events
             }
             else
             {
+                menu.InsertSplitter();
                 AddMenuIcon(menu, page, pageId);
             }
-
-
-            string s = "<script type='text/javascript'>";
-            s += "$(document).ready(function() {";
-            s += @"$('.editorIcon[alt]').each(
-            function() { 
-                if ($(this).attr('alt').indexOf('View Usages') != -1) {
-                    $(this).css('cursor', 'pointer'); } });";
-            s += "});";
-            s += "</script>";
-            page.Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "jsfixcursor", s);
-
-            string strCss = "<style type='text/css'>.mceToolbarExternal{padding-left: 15px;}</style>";
-            page.Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "cssfixtoolbar", strCss);
         }
 
         private void AddMenuIcon(ScrollingMenu menu, umbracoPage page, int pageId)
@@ -90,6 +77,28 @@ namespace Census.Events
             ni.AltText = "View Usages";
             ni.OnClickCommand = string.Format("UmbClientMgr.openModalWindow('plugins/census/usages.aspx?sourcePage={0}&sourceId={1}', '{2}', true, 600, 500, 0, 0); return false;", page.Request.Path, pageId, title);
             ni.ImageURL = string.Concat(Configuration.PluginDirectory, "census-toolbar-icon.png");
+
+            TweakMenuButton(ref page);
         }
+
+        private void TweakMenuButton(ref umbracoPage page)
+        {
+            // Fix CSS cursor
+            var js = @"<script type='text/javascript'>
+            $(document).ready(function() {
+                $('.editorIcon[alt]').each(
+                    function() { 
+                        if ($(this).attr('alt').indexOf('View Usages') != -1) {
+                            $(this).css('cursor', 'pointer');
+                        } });
+                    });
+            </script>";
+            page.Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "censusJsFixCursor", js);
+
+            // Fix positioning on TinyMCE pages
+            var css = "<style type='text/css'>.mceToolbarExternal{padding-left: 15px;}</style>";
+            page.Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "censusCssFixPositioning", css);
+        }
+
     }
 }
