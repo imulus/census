@@ -37,9 +37,9 @@ namespace Census.UmbracoObject
                 row["Alias"] = documentType.Alias;
                 if (propertyId != 0)
                 {
-                    var prop = documentType.PropertyTypes.FirstOrDefault(x => x.DataTypeDefinition.Id == propertyId);
-                    if (prop != null)
-                        row["Property"] = prop.Name;
+                    var properties = documentType.PropertyTypes.Where(x => x.DataTypeDefinition.Id == propertyId);
+                    if (properties.Any())
+                        row["Property"] = string.Join("<br/>", properties.Select(p => p.Name));
                 }
                 dt.Rows.Add(row);
                 row.AcceptChanges();
