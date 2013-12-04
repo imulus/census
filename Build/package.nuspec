@@ -4,8 +4,8 @@
 		<id>Census</id>
 		<version></version>
 		<title>Census</title>
-		<authors>imulus, Tom Fulton</authors>
-		<owners>imulus, Tom Fulton</owners>
+		<authors>imulus, tomfulton</authors>
+		<owners>imulus, tomfulton</owners>
 		<projectUrl>http://our.umbraco.org/projects/developer-tools/census</projectUrl>
 		<description><![CDATA[Census is an Umbraco package that makes it easy to see relationships between various Umbraco entities.]]></description>
 		<tags>umbraco</tags>
