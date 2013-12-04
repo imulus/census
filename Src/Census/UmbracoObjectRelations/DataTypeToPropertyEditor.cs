@@ -28,8 +28,11 @@ namespace Census.UmbracoObjectRelations
         public DataTable GetRelations(object id)
         {
             var dataType = DataTypeDefinition.GetDataTypeDefinition((int)id);
+            if (dataType == null || dataType.DataType == null)
+                return new DataTable(); // PropertyEditor DLL no longer exists
+
             var propertyEditorGuid = dataType.DataType.Id;
-            var usages = DataTypeDefinition.GetAll().Where(d => d.DataType.Id == propertyEditorGuid);
+            var usages = DataTypeDefinition.GetAll().Where(d => d.DataType != null && d.DataType.Id == propertyEditorGuid);
 
             return PropertyEditor.ToDataTable(usages);
         }
