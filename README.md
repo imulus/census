@@ -1,3 +1,5 @@
-# Census
+# Census #
 
-An umbraco package that helps visualize where entities are used/referenced.  Ex: List which content types use a particular datatype.
+Census makes it easy to see where and how certain Umbraco entities are being used.
+
+See the [project page](http://our.umbraco.org/projects/develope-tools/census) for more details.
