@@ -35,7 +35,7 @@ namespace Census.UmbracoObject
                 var row = dt.NewRow();
                 row["Name"] = Helper.GenerateLink(documentType.Text, "settings", "/settings/editNodeTypeNew.aspx?id=" + documentType.Id, "settingMasterDataType.gif");
                 row["Alias"] = documentType.Alias;
-                if (propertyId > 0)
+                if (propertyId != 0)
                 {
                     var prop = documentType.PropertyTypes.FirstOrDefault(x => x.DataTypeDefinition.Id == propertyId);
                     if (prop != null)
@@ -47,7 +47,6 @@ namespace Census.UmbracoObject
 
             return dt;
         }
-
 
     }
 }
