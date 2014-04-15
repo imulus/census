@@ -60,11 +60,17 @@ namespace Census.UmbracoObject
             foreach (var nodeId in nodesInPath)
             {
                 var currentDoc = new Document(int.Parse(nodeId));
+                var displayText = "";
 
                 if (currentDoc == null || string.IsNullOrEmpty(currentDoc.Path))
                     continue;
 
-                retVal.AppendFormat("{0} {1} ", currentDoc.Text, separator);
+                if (nodeId == "-20" || nodeId == "-21")
+                    displayText = "Recycle Bin";
+                else
+                    displayText = currentDoc.Text;
+
+                retVal.AppendFormat("{0} {1} ", displayText, separator);
             }
 
             return retVal.ToString().Substring(0, retVal.ToString().LastIndexOf(separator)).Trim();
