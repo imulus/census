@@ -180,6 +180,7 @@
     <Compile Include="UmbracoObjectRelations\MacroToContent.cs" />
     <Compile Include="UmbracoObjectRelations\MacroToTemplate.cs" />
     <Compile Include="UmbracoObjectRelations\DataTypeToPropertyEditor.cs" />
+    <Compile Include="UmbracoObjectRelations\MediaToContent.cs" />
     <Compile Include="UmbracoObjectRelations\TemplateToContent.cs" />
     <Compile Include="UmbracoObjectRelations\TemplateToDocumentType.cs" />
     <Compile Include="UmbracoObjectRelations\TemplateToTemplate.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="UmbracoObject\DataType.cs" />
     <Compile Include="UmbracoObject\DocumentType.cs" />
     <Compile Include="UmbracoObject\Macro.cs" />
+    <Compile Include="UmbracoObject\Media.cs" />
     <Compile Include="UmbracoObject\Property.cs" />
     <Compile Include="UmbracoObject\PropertyEditor.cs" />
     <Compile Include="UmbracoObject\Template.cs" />
